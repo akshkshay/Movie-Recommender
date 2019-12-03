@@ -51,7 +51,7 @@ class Rating:
         self.rating = int(rating)
         self.time = time
 
-# The dataset class helps you to load files and create User, Item and Rating objects
+# The dataset class helps me to load files and create User, Item and Rating objects
 class Dataset:
     def load_users(self, file, u):
         f = open(file, "r")
