@@ -14,13 +14,13 @@ import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.metrics import mean_squared_error
 
-# Store data in arrays
+# Storing data in arrays
 user = []
 item = []
 rating = []
 rating_test = []
 
-# Load the movie lens dataset into arrays
+# Loading the movie lens dataset into arrays
 d = Dataset()
 d.load_users("data/u.user", user)
 d.load_items("data/u.item", item)
@@ -42,7 +42,7 @@ test = np.zeros((n_users, n_items))
 for r in rating_test:
     test[r.user_id - 1][r.item_id - 1] = r.rating
 
-# Perform clustering on items
+# Performing clustering on items
 movie_genre = []
 for movie in item:
     movie_genre.append([movie.unknown, movie.action, movie.adventure, movie.animation, movie.childrens, movie.comedy,
@@ -71,12 +71,12 @@ for i in range(0, n_users):
 
 utility_clustered = np.array(utility_clustered)
 
-# Find the average rating for each user and stores it in the user's object
+# Finding the average rating for each user and stores it in the user's object
 for i in range(0, n_users):
     x = utility_clustered[i]
     user[i].avg_r = sum(a for a in x if a > 0) / sum(a > 0 for a in x)
 
-# Find the Pearson Correlation Similarity Measure between two users
+# Finding the Pearson Correlation Similarity Measure between two users
 def pcs(x, y):
     num = 0
     den1 = 0
@@ -105,7 +105,7 @@ print "\rGenerating Similarity Matrix [%d:%d] = %f" % (i+1, j+1, pcs_matrix[i][j
 print pcs_matrix
 
 # Guesses the ratings that user with id, user_id, might give to item with id, i_id.
-# We will consider the top_n similar users to do this.
+# I will consider the top_n similar users to do this.
 def norm():
     normalize = np.zeros((n_users, 19))
     for i in range(0, n_users):
@@ -152,7 +152,7 @@ print utility_copy
 
 pickle.dump( utility_copy, open("utility_matrix.pkl", "wb"))
 
-# Predict ratings for u.test and find the mean squared error
+# Predicting ratings for u.test and find the mean squared error
 y_true = []
 y_pred = []
 f = open('test.txt', 'w')
