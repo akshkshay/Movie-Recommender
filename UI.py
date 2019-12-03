@@ -22,12 +22,12 @@ n_items = len(item)
 
 utility_matrix = pickle.load( open("utility_matrix.pkl", "rb") )
 
-# Find the average rating for each user and stores it in the user's object
+# Finding the average rating for each user and stores it in the user's object
 for i in range(0, n_users):
     x = utility_matrix[i]
     user[i].avg_r = sum(a for a in x if a > 0) / sum(a > 0 for a in x)
 
-# Find the Pearson Correlation Similarity Measure between two users
+# Finding the Pearson Correlation Similarity Measure between two users
 def pcs(x, y, ut):
     num = 0
     den1 = 0
@@ -43,7 +43,7 @@ def pcs(x, y, ut):
     else:
         return num / den
 
-# Perform clustering on items
+# Performing clustering on items
 movie_genre = []
 for movie in item:
     movie_genre.append([movie.unknown, movie.action, movie.adventure, movie.animation, movie.childrens, movie.comedy,
